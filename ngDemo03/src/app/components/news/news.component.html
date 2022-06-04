@@ -1,0 +1,29 @@
+<h1>ng 模板绑定数据</h1>
+<p>title:{{title}}</p>
+<p>msg:{{msg}}</p>
+
+<h3>{{userInfo.username}}</h3>
+<h3>{{userInfo.age}}</h3>
+
+<p>{{message}}</p>
+<hr>
+
+
+<h1>ng 模板绑定属性</h1>
+<div [title]="student">我是一个div</div>
+<hr>
+
+
+<h1>ng 模板绑定html</h1>
+<div [innerHtml]='content'></div>
+
+
+<h1>ng 模板允许做简单的运算 </h1>
+<p>1+2={{1+2}}</p>
+<hr>
+
+
+<h1>ng 数据循环</h1>
+<ul>
+  <li *ngFor="let item of arr;">{{item}}</li>
+</ul>
