@@ -1,1 +1,104 @@
 <p>home works!</p>
+
+
+<h1>引入图片</h1>
+<img src="assets/imgs/绫波零.jpg" alt="">
+<br>
+<img [src]="prcUrl" alt="">
+<hr>
+
+<h1>循环渲染数据 显示数据的索引</h1>
+<ul>
+  <li *ngFor="let item of list;let i = index">
+    {{i}}_{{item.title}}
+  </li>
+</ul>
+
+
+<h1>条件判断语句 *ngIf</h1>
+<div *ngIf="flag">
+  <img src="assets/imgs/霞柱jpg.jpg" alt="">
+</div>
+<div *ngIf="!flag">
+  <img src="assets/imgs/nanase.jpg" alt="">
+</div>
+<ul>
+  <li *ngFor="let item of list;let i = index;">
+    <span *ngIf="i === 1" class="red">
+      {{i}}_{{item.title}}
+    </span>
+    <span *ngIf="i !== 1">
+      {{i}}_{{item.title}}
+    </span>
+  </li>
+</ul>
+<hr>
+
+
+<h1>条件判断语句 [ngSwitch]</h1>
+<span [ngSwitch]="orderStatus">
+  <p *ngSwitchCase="1">表示已经支付</p>
+  <p *ngSwitchCase="2">表示支付并且确认订单</p>
+  <p *ngSwitchCase="3">表示发货</p>
+  <p *ngSwitchCase="4">表示已经收获</p>
+  <p *ngSwitchCase="5">表示无效</p>
+</span>
+<hr>
+
+
+<h1>属性[ngClass] [ngStyle]</h1>
+<div>
+  ngClass演示
+</div>
+<div [ngClass]="{red: true}">
+  ngClass演示
+</div>
+<div [ngClass]="{blue: true}">
+  ngClass演示
+</div>
+<div [ngClass]="{yellow: true}">
+  ngClass演示
+</div>
+<div [ngClass]="{yellow: flag,blue: !flag}">
+  ngClass演示
+</div>
+<strong>循环数组：让数组的覅一个元素样式为red</strong>
+<ul>
+  <li *ngFor="let item of list;let i = index" [ngClass]="{red: i == 0,blue: i == 1}">
+    {{i}}_{{item.title}}
+  </li>
+</ul>
+<hr>
+
+
+<h1>属性[ngClass] [ngStyle]</h1>
+<p style="color: red">我是一个p</p>
+<p [ngStyle]="{color: 'blue'}">我是一个p</p>
+<p [ngStyle]="{color: attr}">我是一个p</p>
+
+
+<h1>管道</h1>
+<p>{{today | date:'yyyy-MM-dd HH:mm ss'}}</p>
+<hr>
+
+
+<h1>事件</h1>
+<button (click)="run()">按钮</button>
+<button (click)="getDate()">获取title</button>
+<button (click)="runEvent($event)">获取dom</button>
+
+
+<h1>表单事件 事件对象</h1>
+<!-- <input type="text" (keydown)="keyDown()"> -->
+keydown:
+<input type="text" (keydown)="keyDown($event)">
+<br>
+keyup:
+<input type="text" (keyup)="keyUp()">
+<hr>
+
+
+<h1>双向数据绑定 -- 只针对表单</h1>
+<input type="text" [(ngModel)]="keywords" (keydown)="ngModelDown()">
+<button (click)="changeValue()">改变input值</button>
+
