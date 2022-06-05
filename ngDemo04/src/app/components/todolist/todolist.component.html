@@ -1,0 +1,20 @@
+<div class="todolist">
+  <input type="text" [(ngModel)]="keyword" (keyup)="doAdd($event)">
+
+  <h3>代办事项</h3>
+  <ul>
+    <ng-container *ngFor="let item of todoList;let key = index">
+      <li *ngIf="item.status == 0">
+        <input type="checkbox" [(ngModel)]=item.status />{{item.title}} ------ <button (click)="dele(key)">X</button>
+      </li>
+    </ng-container>
+
+  </ul>
+  <h3>已完成事项</h3>
+  <ng-container *ngFor="let item of todoList;let key = index">
+    <li *ngIf="item.status == 1">
+      <input type="checkbox" [(ngModel)]=item.status />{{item.title}} ------ <button (click)="dele(key)">X</button>
+    </li>
+  </ng-container>
+
+</div>
