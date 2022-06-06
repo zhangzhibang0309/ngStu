@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { StorageService } from 'src/app/services/storage.service';
+
 @Component({
   selector: 'app-todolist',
   templateUrl: './todolist.component.html',
@@ -11,9 +13,11 @@ export class TodolistComponent implements OnInit {
   keyword: string = ''
   todoList: any[] = [];
 
-  constructor() { }
+  constructor(public storage: StorageService) { }
 
   ngOnInit(): void {
+    let todol = this.storage.get('todoList')
+    if (todol) this.todoList = todol
   }
 
   doAdd(e: any) {
@@ -23,6 +27,8 @@ export class TodolistComponent implements OnInit {
         title: this.keyword,
         status: 0
       })
+
+      this.storage.set('todoList', this.todoList)
     }
     // }
 
@@ -30,6 +36,12 @@ export class TodolistComponent implements OnInit {
 
   dele(key: number) {
     this.todoList.splice(key, 1)
+
+    this.storage.set('todoList', this.todoList)
+  }
+
+  checkboxChange() {
+    this.storage.set('todoList', this.todoList)
   }
 
   // 异步问题 类型问题
